@@ -53,10 +53,19 @@ def validate_labels(
 
     ``labels`` must contain :data:`LABEL_COLUMNS`. ``metadata`` (optional) is
     joined by ``ID`` — every label ID must have exactly one metadata row.
+
+    Without a ``metadata`` frame, extra label columns (e.g. an already-joined
+    ``Category``) are preserved. With one, the labels are reduced to
+    :data:`LABEL_COLUMNS` before the join so label and metadata columns cannot
+    collide.
     """
 
     _require_columns(labels, LABEL_COLUMNS, "labels")
-    labels = labels.loc[:, list(LABEL_COLUMNS)].copy()
+    if metadata is None:
+        extra_columns = [column for column in labels.columns if column not in LABEL_COLUMNS]
+        labels = labels.loc[:, [*LABEL_COLUMNS, *extra_columns]].copy()
+    else:
+        labels = labels.loc[:, list(LABEL_COLUMNS)].copy()
     labels["ID"] = labels["ID"].astype(str)
     labels["Channel"] = labels["Channel"].astype(str)
     labels["StartTime"] = _parse_timestamps(labels["StartTime"], "StartTime")

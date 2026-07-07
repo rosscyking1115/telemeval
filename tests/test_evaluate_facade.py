@@ -125,3 +125,25 @@ def test_registry_rejects_unknown_metric_and_supports_registration() -> None:
 def test_duplicate_registration_requires_overwrite() -> None:
     with pytest.raises(SchemaError, match="already registered"):
         register_metric("event_wise", lambda inputs, **kw: {})
+
+
+def test_evaluate_preserves_prejoined_metadata_columns() -> None:
+    # Labels that already carry Category (e.g. from formats.esa_adb.read_labels)
+    # must keep it through evaluate(), so exclude_categories works.
+    labels = pd.DataFrame(
+        [
+            ["A-1", "ch1", "2024-01-01T00:02:00", "2024-01-01T00:03:00", "Anomaly"],
+            ["G-1", "ch1", "2024-01-01T00:04:00", "2024-01-01T00:04:00", "Communication Gap"],
+        ],
+        columns=["ID", "Channel", "StartTime", "EndTime", "Category"],
+    )
+
+    result = evaluate(
+        labels,
+        _predictions([0, 0, 1, 1, 0, 0]),
+        metrics=("event_wise",),
+        exclude_categories=("Communication Gap",),
+    )
+
+    assert result.metrics["event_wise"]["total_events"] == 1
+    assert result.metrics["event_wise"]["event_wise_recall"] == 1.0
