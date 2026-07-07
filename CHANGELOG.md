@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 — 2026-07-07
+
+- Suppress the vendored reference code's docstring SyntaxWarnings at import,
+  so a fresh `pip install telemeval` imports cleanly. No functional changes.
+
+
 ## 0.1.0 — 2026-07-07
 
 First release.

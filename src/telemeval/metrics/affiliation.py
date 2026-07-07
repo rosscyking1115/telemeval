@@ -14,6 +14,7 @@ reference implementation consumes a single binary ground-truth vector.
 from __future__ import annotations
 
 import math
+import warnings
 from collections.abc import Mapping, Sequence
 from typing import Any
 
@@ -21,8 +22,15 @@ import numpy as np
 import pandas as pd
 
 from telemeval.errors import SchemaError
-from telemeval.metrics._affiliation_vendor.generics import convert_vector_to_events
-from telemeval.metrics._affiliation_vendor.metrics import pr_from_events
+
+# The vendored reference code (kept faithful to upstream) contains LaTeX-ish
+# escape sequences in docstrings that emit SyntaxWarnings when first compiled.
+# Suppress them here, at the only supported import site, instead of editing
+# the vendored files.
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore", SyntaxWarning)
+    from telemeval.metrics._affiliation_vendor.generics import convert_vector_to_events
+    from telemeval.metrics._affiliation_vendor.metrics import pr_from_events
 
 __all__ = ["score_affiliation"]
 
