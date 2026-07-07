@@ -1,0 +1,34 @@
+telemeval
+Copyright 2026 Ross King
+
+This product includes software developed by third parties:
+
+1. Vendored affiliation metrics (src/telemeval/metrics/_affiliation_vendor/)
+
+   affiliation-metrics-py — reference implementation of affiliation-based
+   precision/recall from:
+
+     Alexis Huet, Jose Manuel Navarro, Dario Rossi.
+     "Local Evaluation of Time Series Anomaly Detection Algorithms."
+     KDD 2022. https://doi.org/10.1145/3534678.3539339
+
+   Source: https://github.com/ahstat/affiliation-metrics-py
+   License: MIT (retained verbatim at
+   src/telemeval/metrics/_affiliation_vendor/LICENSE)
+
+   The vendored code is kept faithful to upstream; telemeval maintains it
+   (packaging, compatibility, and bug fixes are recorded as prominent
+   modification notices in the vendored files when they occur).
+
+2. Metric and protocol definitions informed by ESA-ADB
+
+   The corrected event-wise scoring semantics follow the ESA Anomaly
+   Detection Benchmark:
+
+     Krzysztof Kotowski et al. "European Space Agency Benchmark for
+     Anomaly Detection in Satellite Telemetry." arXiv:2406.17826.
+
+   Official code: https://github.com/kplabs-pl/ESA-ADB (MIT).
+   telemeval does not vendor ESA-ADB code and does not redistribute the
+   ESA Anomaly Dataset (dataset license: CC BY 3.0 IGO; see Zenodo
+   record 10.5281/zenodo.15237121).

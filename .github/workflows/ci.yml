@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Sync dependencies
+        run: uv sync --dev
+      - name: Lint
+        run: uv run ruff check .
+      - name: Test
+        run: uv run pytest
+
+  install-surface:
+    # Guard the core promise: a clean install pulls only numpy + pandas.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - name: Build wheel
+        run: uv build
+      - name: Install wheel into clean venv and check dependency surface
+        shell: bash
+        run: |
+          uv venv /tmp/clean-venv
+          uv pip install --python /tmp/clean-venv/bin/python dist/*.whl
+          uv pip list --python /tmp/clean-venv/bin/python
+          /tmp/clean-venv/bin/python - <<'EOF'
+          import importlib.metadata as md
+          names = {d.metadata["Name"].lower() for d in md.distributions()}
+          allowed = {"telemeval", "numpy", "pandas", "python-dateutil", "pytz", "six", "tzdata", "pip"}
+          extras = names - allowed
+          assert not extras, f"unexpected runtime dependencies: {sorted(extras)}"
+          import telemeval
+          print("telemeval", telemeval.__version__, "clean-install OK")
+          EOF

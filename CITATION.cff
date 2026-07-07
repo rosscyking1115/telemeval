@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use telemeval in your research, please cite it as below, and cite the affiliation-metrics and ESA-ADB papers for the underlying metric definitions."
+title: "telemeval: leakage-safe, event-wise and affiliation-based evaluation for spacecraft-telemetry anomaly detection"
+type: software
+authors:
+  - family-names: King
+    given-names: Ross
+license: Apache-2.0
+repository-code: "https://github.com/rosscyking1115/telemeval"
+references:
+  - type: conference-paper
+    title: "Local Evaluation of Time Series Anomaly Detection Algorithms"
+    authors:
+      - family-names: Huet
+        given-names: Alexis
+      - family-names: Navarro
+        given-names: Jose Manuel
+      - family-names: Rossi
+        given-names: Dario
+    year: 2022
+    doi: "10.1145/3534678.3539339"
+  - type: article
+    title: "European Space Agency Benchmark for Anomaly Detection in Satellite Telemetry"
+    authors:
+      - family-names: Kotowski
+        given-names: Krzysztof
+    year: 2024
+    identifiers:
+      - type: other
+        value: "arXiv:2406.17826"
