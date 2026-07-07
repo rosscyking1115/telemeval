@@ -3,6 +3,48 @@ for spacecraft-telemetry anomaly detection."""
 
 from __future__ import annotations
 
+from telemeval.contract import (
+    assert_window_consistent,
+    build_metric_inputs,
+    intervals_to_mask,
+    validate_labels,
+    validate_predictions,
+)
+from telemeval.errors import (
+    AlignmentError,
+    BinaryDomainError,
+    ContractError,
+    IntervalError,
+    MonotonicityError,
+    SchemaError,
+    TypeJoinError,
+    WindowLeakageError,
+)
+from telemeval.events import group_binary_events, positive_runs
+from telemeval.metrics.event_wise import score_event_wise
+from telemeval.report import build_report, render_markdown, write_report
+
 __version__ = "0.1.0.dev0"
 
-__all__ = ["__version__"]
+__all__ = [
+    "AlignmentError",
+    "BinaryDomainError",
+    "ContractError",
+    "IntervalError",
+    "MonotonicityError",
+    "SchemaError",
+    "TypeJoinError",
+    "WindowLeakageError",
+    "__version__",
+    "assert_window_consistent",
+    "build_metric_inputs",
+    "build_report",
+    "group_binary_events",
+    "intervals_to_mask",
+    "positive_runs",
+    "render_markdown",
+    "score_event_wise",
+    "validate_labels",
+    "validate_predictions",
+    "write_report",
+]
