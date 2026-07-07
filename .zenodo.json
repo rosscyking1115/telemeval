@@ -1,0 +1,39 @@
+{
+  "title": "telemeval: leakage-safe, event-wise and affiliation-based evaluation for spacecraft-telemetry anomaly detection",
+  "description": "<p>A Python library that evaluates time-series anomaly detection the way the recent literature recommends: corrected event-wise precision/recall/F-beta and affiliation-based precision/recall (canonical KDD-2022 reference implementation, vendored and maintained), behind a validated ingestion contract that raises typed errors instead of producing numbers from leaky or malformed evaluations &mdash; including a train/test-window leakage guard that is on by default. Includes ESA-ADB and TimeEval format readers, scikit-learn-convention metric wrappers, and deterministic JSON/Markdown reports. Core dependencies: numpy and pandas only.</p>",
+  "upload_type": "software",
+  "license": "Apache-2.0",
+  "creators": [
+    {
+      "name": "King, Ross"
+    }
+  ],
+  "keywords": [
+    "anomaly detection",
+    "time series",
+    "evaluation metrics",
+    "spacecraft telemetry",
+    "satellite operations",
+    "ESA-ADB",
+    "affiliation metrics",
+    "event-wise evaluation",
+    "Python"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/rosscyking1115/telemeval",
+      "resource_type": "software"
+    },
+    {
+      "relation": "cites",
+      "identifier": "10.1145/3534678.3539339",
+      "resource_type": "publication-conferencepaper"
+    },
+    {
+      "relation": "cites",
+      "identifier": "arXiv:2406.17826",
+      "resource_type": "publication-preprint"
+    }
+  ]
+}

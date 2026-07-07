@@ -7,6 +7,8 @@ authors:
     given-names: Ross
 license: Apache-2.0
 repository-code: "https://github.com/rosscyking1115/telemeval"
+version: 0.1.1
+date-released: 2026-07-07
 references:
   - type: conference-paper
     title: "Local Evaluation of Time Series Anomaly Detection Algorithms"
