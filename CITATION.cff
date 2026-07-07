@@ -9,6 +9,15 @@ license: Apache-2.0
 repository-code: "https://github.com/rosscyking1115/telemeval"
 version: 0.1.2
 date-released: 2026-07-07
+# Concept DOI — always resolves to the latest version; cite this one.
+doi: 10.5281/zenodo.21250548
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21250548
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.21250549
+    description: "Version DOI (0.1.2)"
 references:
   - type: conference-paper
     title: "Local Evaluation of Time Series Anomaly Detection Algorithms"

@@ -1,5 +1,11 @@
 # telemeval
 
+[![CI](https://github.com/rosscyking1115/telemeval/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rosscyking1115/telemeval/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/telemeval)](https://pypi.org/project/telemeval/)
+[![Python](https://img.shields.io/pypi/pyversions/telemeval)](https://pypi.org/project/telemeval/)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21250548.svg)](https://doi.org/10.5281/zenodo.21250548)
+
 **Leakage-safe, event-wise and affiliation-based evaluation for
 spacecraft-telemetry anomaly detection.**
 
