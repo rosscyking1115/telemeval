@@ -3,7 +3,7 @@
 **Leakage-safe, event-wise and affiliation-based evaluation for
 spacecraft-telemetry anomaly detection.**
 
-> Status: pre-release (v0.1 in development). API may change until v1.
+> Status: v0.1 — early release; the API may still change until v1.
 
 Time-series anomaly-detection evaluation is notoriously easy to get wrong:
 point-adjusted F1 can rank random predictions above real detectors, and subtle
