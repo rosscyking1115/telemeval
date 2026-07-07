@@ -1,6 +1,6 @@
 [project]
 name = "telemeval"
-version = "0.3.0"
+version = "0.3.1"
 description = "Leakage-safe, event-wise and affiliation-based evaluation for spacecraft-telemetry anomaly detection"
 readme = "README.md"
 requires-python = ">=3.11"

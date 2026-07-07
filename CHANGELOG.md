@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.1 — 2026-07-07
+
+- **Documentation correction (honesty patch).** An audit against ESA-ADB's
+  own test fixtures showed our event-wise metric's earlier "ESA-ADB-aligned
+  semantics" wording was too strong: **recall matches ESA-ADB exactly**, but
+  precision/F-beta are telemeval's own run-based definition and diverge
+  numerically from ESAScores `EW_*` (no TNR duration correction, no
+  `alarming_precision`, exclude- vs select-based category handling,
+  collapsed vs union event intervals). Docstrings, specs, and README now
+  state this precisely, and three divergence tests ported verbatim from
+  ESA-ADB's fixtures pin both sets of numbers.
+- Roadmap: an ESAScores-parity metric ("esa_scores") is now the next
+  milestone, alongside ESA's modified-affiliation wrapper.
+- No metric behavior changed in this release.
+
+
 ## 0.3.0 — 2026-07-07
 
 - **New metric: channel-aware / subsystem-aware F-beta** (ESA-ADB affected-

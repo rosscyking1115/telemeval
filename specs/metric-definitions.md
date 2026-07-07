@@ -1,21 +1,27 @@
 # telemeval — Metric Definitions
 
-## Corrected event-wise precision / recall / F-beta (v1)
-
-Semantics (ported from the origin project's tested scorer, aligned with
-ESA-ADB's corrected event-wise scoring):
+## Event-wise precision / recall / F-beta (v1, telemeval semantics)
 
 - A labelled **event is detected** when any positive prediction sample falls
   inside its inclusive `[StartTime, EndTime]` interval (on the global
-  max-over-channels series).
+  max-over-channels series). Multi-row events are collapsed to one
+  `[min start, max end]` interval.
 - A **predicted positive run** (consecutive positive samples) is a **true
-  alarm** if any of its samples falls inside any event, else a false alarm.
+  alarm** if any of its samples falls inside any scored event, else a false
+  alarm.
 - `recall = detected_events / total_events`;
   `precision = true_alarm_runs / total_runs`;
-  `F-beta` with beta=0.5 by default (precision-weighted, matching ESA-ADB's
-  false-alarm sensitivity). Empty-denominator conventions are documented in
-  code and tested.
-- All events weigh equally regardless of length ("corrected" semantics).
+  `F-beta` with beta=0.5 by default. Empty-denominator conventions are
+  documented in code and tested.
+
+**Relationship to ESA-ADB's ESAScores `EW_*` (audited 2026-07-07 on their own
+fixtures; see `tests/test_event_wise_divergence.py`):** recall matches
+ESA-ADB exactly (every event weighs equally). Precision and F-beta are
+telemeval's own run-based definition and **diverge numerically** from
+`EW_precision`/`EW_F`: telemeval has no TNR duration correction, no
+`alarming_precision`, exclude-based (not select-based) category handling, and
+collapsed (not union) event intervals. Do not quote these as ESA-ADB `EW_*`
+numbers. An ESAScores-parity metric is planned (roadmap.md).
 
 Reference: Kotowski et al., ESA-ADB, arXiv:2406.17826.
 

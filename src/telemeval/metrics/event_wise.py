@@ -1,13 +1,29 @@
-"""Corrected event-wise precision / recall / F-beta.
-
-Ported from the aerospace-prognostics event-wise scorer; semantics align with
-ESA-ADB's corrected event-wise scoring (every event weighs equally regardless
-of length; precision-weighted F0.5 by default).
+"""Event-wise precision / recall / F-beta (telemeval semantics).
 
 Detection is sample-based and unambiguous: a labelled event is detected when
 any positive prediction sample falls inside its inclusive
 ``[StartTime, EndTime]`` interval; a predicted positive run is a true alarm
 when any of its samples falls inside any event, otherwise a false alarm.
+
+Relationship to ESA-ADB's ``ESAScores`` EW_* metrics, stated precisely
+(verified on ESA-ADB's own test fixtures — see
+``tests/test_event_wise_divergence.py``):
+
+- **Recall matches ESA-ADB exactly**: every event weighs equally regardless
+  of length or channel count.
+- **Precision is telemeval's own definition and diverges numerically**:
+  it is run-based (fraction of predicted positive runs that hit a scored
+  event), with NO TNR duration correction (ESA multiplies event precision by
+  the fraction of nominal time free of false-positive seconds), and NO
+  ``alarming_precision`` output (ESA's penalty for multiple alarms on one
+  event). Category handling also differs: telemeval's ``exclude_categories``
+  drops events entirely, so an alarm inside an excluded event counts as a
+  false alarm; ESA's ``select_labels`` shields such alarms via the full
+  ground truth. Events with multiple label rows are collapsed to one
+  ``[min start, max end]`` interval here; ESA keeps the interval union.
+
+Do not quote these precision/F numbers as ESA-ADB ``EW_*`` values. An
+ESAScores-parity metric is planned separately (see specs/roadmap.md).
 """
 
 from __future__ import annotations

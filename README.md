@@ -24,8 +24,11 @@ telemeval is that home:
 - **A validated ingestion contract** that raises typed, actionable errors
   instead of producing a number from a leaky or malformed evaluation —
   including a first-class train/test-window leakage guard.
-- **Corrected event-wise precision / recall / F-beta** with unambiguous,
-  documented overlap semantics.
+- **Event-wise precision / recall / F-beta** with unambiguous, documented
+  overlap semantics (recall matches ESA-ADB's event-wise recall exactly;
+  precision is telemeval's run-based definition — the differences from
+  ESA-ADB's TNR-corrected `EW_*` are documented and pinned by divergence
+  tests, and an ESAScores-parity metric is on the roadmap).
 - **Affiliation-based precision / recall** — the canonical reference
   implementation (Huet et al., KDD 2022, MIT) vendored, wrapped, tested, and
   maintained here.
