@@ -33,6 +33,37 @@ telemeval is that home:
 
 Core dependencies: numpy and pandas. Nothing else.
 
+## Quick start
+
+```python
+import pandas as pd
+from telemeval import evaluate
+
+labels = pd.DataFrame(
+    {
+        "ID": ["anomaly_1"],
+        "Channel": ["channel_41"],
+        "StartTime": ["2024-01-01T00:02:00"],
+        "EndTime": ["2024-01-01T00:03:00"],
+    }
+)
+timestamps = pd.date_range("2024-01-01", periods=6, freq="1min")
+predictions = {
+    "channel_41": pd.DataFrame({"Timestamp": timestamps, "Score": [0, 0, 1, 1, 0, 0]})
+}
+
+result = evaluate(labels, predictions, dataset="my-mission")
+print(result.metrics["event_wise"]["event_wise_fbeta"])     # 1.0
+print(result.metrics["affiliation"]["affiliation_fbeta"])   # 1.0
+result.save(json_path="report.json", markdown_path="report.md")
+```
+
+See [docs/usage.md](docs/usage.md) for the leakage guard, continuous scores +
+threshold, ESA-ADB and TimeEval-format loaders, parquet input, sklearn-style
+wrappers, and the metric registry. See
+[docs/related-work.md](docs/related-work.md) for an honest map of prior art
+and when to use which tool.
+
 ## What telemeval is not
 
 - Not a detector library (see PyOD, aeon, darts).
