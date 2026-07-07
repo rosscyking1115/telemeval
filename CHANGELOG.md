@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-07-07
+
+- Citation metadata: `.zenodo.json` and version/date in `CITATION.cff` for
+  Zenodo DOI archiving. No functional changes.
+
+
 ## 0.1.1 — 2026-07-07
 
 - Suppress the vendored reference code's docstring SyntaxWarnings at import,
