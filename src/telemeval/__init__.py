@@ -21,6 +21,7 @@ from telemeval.errors import (
     WindowLeakageError,
 )
 from telemeval.events import group_binary_events, positive_runs
+from telemeval.metrics.affiliation import score_affiliation
 from telemeval.metrics.event_wise import score_event_wise
 from telemeval.report import build_report, render_markdown, write_report
 
@@ -43,6 +44,7 @@ __all__ = [
     "intervals_to_mask",
     "positive_runs",
     "render_markdown",
+    "score_affiliation",
     "score_event_wise",
     "validate_labels",
     "validate_predictions",

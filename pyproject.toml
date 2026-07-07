@@ -55,10 +55,18 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
-# The vendored affiliation package is kept byte-faithful to upstream; do not
-# lint-rewrite it (see NOTICE).
-exclude = ["src/telemeval/metrics/_affiliation_vendor/**"]
+# The vendored affiliation package and its ported upstream tests are kept
+# faithful to upstream; do not lint-rewrite them (see NOTICE / VENDORED.md).
+exclude = [
+    "src/telemeval/metrics/_affiliation_vendor/**",
+    "tests/vendor_affiliation/**",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+filterwarnings = [
+    # Upstream vendored docstrings contain LaTeX-ish escape sequences; kept
+    # faithful to upstream rather than rewritten.
+    "ignore::SyntaxWarning",
+]
