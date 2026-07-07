@@ -32,11 +32,30 @@ Implementation: the authors' reference code, vendored verbatim (MIT) at
 not re-derive the math; we maintain the canonical code. Upstream's test
 suite is ported and kept green.
 
-## v1.x (specified, not shipped)
+## ADTQC — detection-timing quality (v0.2)
 
-- **ADTQC** (ESA-ADB `latency_metrics.py`): piecewise timing curve on the
-  latency of first detection per event; requires channel-resolved
-  predictions and global event ordering (gap to previous anomaly).
+Semantics follow ESA-ADB's `latency_metrics.py` (verified against the
+reference source):
+
+- Latency ``x`` = start of the earliest predicted run **overlapping** the
+  event, minus event start (negative = early detection).
+- Curve ``f(x, a, b)`` with exponent ``e``: 1 when ``x == 0`` and ``a`` or
+  ``b`` is zero (point anomaly caught at onset); 0 when ``x <= -a`` or
+  ``x >= b``; ``((x+a)/a)^e`` on the early side; ``1/(1+(x/(b-x))^e)`` after
+  onset.
+- Allowance ``a = min(length, gap to previous event's START)``; the first
+  event's allowance is its own length.
+- Aggregates (``nb_before``, ``nb_after``, ``after_rate``, ``adtqc_total``)
+  are computed **over detected events only** — undetected events are the
+  recall metric's business. No detections at all → ``None`` aggregates.
+
+Deviation, recorded honestly: telemeval computes latencies in seconds on the
+merged global timeline (consistent with its other metrics) rather than on
+ESA-ADB's per-channel resampled index. Opt-in via
+``evaluate(metrics=("event_wise", "affiliation", "adtqc"))``.
+
+## v0.x (specified, not shipped)
+
 - **Subsystem-aware F0.5**: adds a channel->subsystem mapping input
-  (ESA-ADB `channels.csv` shape).
+  (ESA-ADB `channels.csv` shape); will also make ADTQC channel-aware.
 - Watched, not promised: PATE, LARM/ALARM.

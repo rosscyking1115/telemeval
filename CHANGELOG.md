@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 — 2026-07-07
+
+- **New metric: ADTQC** (ESA-ADB's Anomaly Detection Timing Quality Curve) —
+  scores when each event was first detected; the first packaged
+  implementation (previously existed only inside ESA-ADB's research fork).
+  Semantics verified against the reference source; latencies computed in
+  seconds on the merged global timeline (deviation documented). Registered
+  as `"adtqc"`; opt-in via `evaluate(metrics=(..., "adtqc"))`.
+  Validated on real ESA-ADB Mission1 telemetry: the robust-threshold
+  baseline scores ADTQC total 0.9618 over its 27 detections (median
+  latency 0 s) — conservative detectors fire rarely but at onset.
+
+
 ## 0.1.2 — 2026-07-07
 
 - Citation metadata: `.zenodo.json` and version/date in `CITATION.cff` for

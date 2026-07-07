@@ -100,6 +100,20 @@ affiliation_fbeta_score(y_true, y_pred)
 These follow the `score_func(y_true, y_pred)` convention and work with
 `sklearn.metrics.make_scorer`.
 
+## Detection timing (ADTQC)
+
+ESA-ADB's timing-quality curve scores *when* each event was first detected
+(1.0 = at onset, decaying toward 0 as detection lags; early detections are
+credited within an allowance window). Opt-in, because timing is only
+meaningful once detection quality is understood:
+
+```python
+result = evaluate(labels, predictions, metrics=("event_wise", "affiliation", "adtqc"))
+timing = result.metrics["adtqc"]
+timing["adtqc_total"]   # mean timing quality over DETECTED events (None if none)
+timing["after_rate"]    # fraction of detections at/after onset
+```
+
 ## Extending: the metric registry
 
 ```python

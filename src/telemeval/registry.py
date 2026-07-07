@@ -12,6 +12,7 @@ from collections.abc import Callable, Mapping
 from typing import Any
 
 from telemeval.errors import SchemaError
+from telemeval.metrics.adtqc import score_adtqc
 from telemeval.metrics.affiliation import score_affiliation
 from telemeval.metrics.event_wise import score_event_wise
 
@@ -45,3 +46,7 @@ def available_metrics() -> list[str]:
 
 register_metric("event_wise", score_event_wise)
 register_metric("affiliation", score_affiliation)
+# Detection-timing quality (ESA-ADB ADTQC). Not in DEFAULT_METRICS yet:
+# timing is only meaningful once detection quality is understood, so it is
+# explicit opt-in via evaluate(metrics=(..., "adtqc")).
+register_metric("adtqc", score_adtqc)

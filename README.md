@@ -29,6 +29,9 @@ telemeval is that home:
 - **Affiliation-based precision / recall** — the canonical reference
   implementation (Huet et al., KDD 2022, MIT) vendored, wrapped, tested, and
   maintained here.
+- **ADTQC detection-timing quality** (ESA-ADB) — scores *when* each event was
+  first caught, not just whether; previously available only inside ESA-ADB's
+  research fork.
 - **Honest reports**: deterministic JSON and Markdown output stamped with
   explicit scope caveats.
 - **Telemetry-aware inputs**: channel-keyed predictions (interval labels,

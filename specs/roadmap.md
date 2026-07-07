@@ -7,8 +7,8 @@ TimeEval readers + sklearn wrappers + registry.
 
 ## v1.x — metric hierarchy (evidence-ranked)
 
-1. **ADTQC** — first post-v1 item; proves the registry's extensibility.
-   Contract already carries channel identity.
+1. ~~**ADTQC**~~ — **shipped in v0.2** (global-timeline variant; registry
+   extensibility proven). Channel-aware variant lands with subsystem work.
 2. **Subsystem-aware F0.5** — adds channel->subsystem mapping input.
 3. **Modified affiliation-based F0.5** (ESA-ADB variant).
 

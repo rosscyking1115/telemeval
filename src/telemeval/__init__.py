@@ -22,12 +22,13 @@ from telemeval.errors import (
 )
 from telemeval.evaluate import DEFAULT_METRICS, EvaluationResult, evaluate
 from telemeval.events import group_binary_events, positive_runs
+from telemeval.metrics.adtqc import score_adtqc, timing_curve
 from telemeval.metrics.affiliation import score_affiliation
 from telemeval.metrics.event_wise import score_event_wise
 from telemeval.registry import available_metrics, get_metric, register_metric
 from telemeval.report import build_report, render_markdown, write_report
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 
 __all__ = [
     "DEFAULT_METRICS",
@@ -52,8 +53,10 @@ __all__ = [
     "positive_runs",
     "register_metric",
     "render_markdown",
+    "score_adtqc",
     "score_affiliation",
     "score_event_wise",
+    "timing_curve",
     "validate_labels",
     "validate_predictions",
     "write_report",
