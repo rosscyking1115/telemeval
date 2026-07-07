@@ -18,6 +18,7 @@ from telemeval.contract import (
     build_metric_inputs,
     validate_labels,
 )
+from telemeval.errors import SchemaError
 from telemeval.registry import get_metric
 from telemeval.report import build_report, render_markdown, write_report
 
@@ -78,6 +79,7 @@ def evaluate(
     exclude_categories: Sequence[str] = (),
     clip_to_window: bool = False,
     dataset: str | None = None,
+    metric_options: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> EvaluationResult:
     """Validate inputs, guard the evaluation window, and score all metrics.
 
@@ -110,11 +112,23 @@ def evaluate(
             guarded, predictions_by_channel, threshold=threshold
         )
 
+    options = dict(metric_options or {})
+    unknown_options = set(options) - set(metrics)
+    if unknown_options:
+        raise SchemaError(
+            f"metric_options given for metrics not being run: {sorted(unknown_options)}"
+        )
+
     results: dict[str, dict[str, Any]] = {}
     for name in metrics:
         metric_fn = get_metric(name)
         results[name] = dict(
-            metric_fn(inputs, beta=beta, exclude_categories=exclude_categories)
+            metric_fn(
+                inputs,
+                beta=beta,
+                exclude_categories=exclude_categories,
+                **options.get(name, {}),
+            )
         )
 
     config: dict[str, Any] = {

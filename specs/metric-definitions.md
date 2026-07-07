@@ -54,8 +54,25 @@ merged global timeline (consistent with its other metrics) rather than on
 ESA-ADB's per-channel resampled index. Opt-in via
 ``evaluate(metrics=("event_wise", "affiliation", "adtqc"))``.
 
+## Channel-aware / subsystem-aware F-beta (v0.3)
+
+Affected-source diagnosis, implemented from and fixture-verified against
+ESA-ADB's `ranking_metrics.py::ChannelAwareFScore` (four reference test cases
+ported verbatim with exact expected values):
+
+- Per event, each predicted channel is TP (labelled + any detection overlaps
+  the event's full interval), FN (labelled, none), or FP (unlabelled +
+  detection) — where an FP is excused if its detection, restricted to this
+  event's interval, overlaps another event's labels on the same channel.
+- Precision/recall/F-beta per event, averaged over events. Point labels are
+  widened by 1 ms exactly as the reference does.
+- Subsystem variant groups channels via a mapping (ESA-ADB `channels.csv`;
+  `telemeval.formats.esa_adb.read_channels`), with the reference's
+  zero-out-and-recheck excusal.
+- Registered as `"channel_aware"`; the mapping is passed via
+  `evaluate(metric_options={"channel_aware": {"subsystems_mapping": ...}})`.
+
 ## v0.x (specified, not shipped)
 
-- **Subsystem-aware F0.5**: adds a channel->subsystem mapping input
-  (ESA-ADB `channels.csv` shape); will also make ADTQC channel-aware.
+- Channel-aware ADTQC variant; modified affiliation-based F0.5.
 - Watched, not promised: PATE, LARM/ALARM.

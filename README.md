@@ -9,7 +9,7 @@
 **Leakage-safe, event-wise and affiliation-based evaluation for
 spacecraft-telemetry anomaly detection.**
 
-> Status: v0.1 — early release; the API may still change until v1.
+> Status: v0.x — early releases; the API may still change until v1.
 
 Time-series anomaly-detection evaluation is notoriously easy to get wrong:
 point-adjusted F1 can rank random predictions above real detectors, and subtle
@@ -32,6 +32,8 @@ telemeval is that home:
 - **ADTQC detection-timing quality** (ESA-ADB) — scores *when* each event was
   first caught, not just whether; previously available only inside ESA-ADB's
   research fork.
+- **Channel- and subsystem-aware F-beta** (ESA-ADB) — did you flag the right
+  *source*? Verified against the reference test suite's exact expected values.
 - **Honest reports**: deterministic JSON and Markdown output stamped with
   explicit scope caveats.
 - **Telemetry-aware inputs**: channel-keyed predictions (interval labels,

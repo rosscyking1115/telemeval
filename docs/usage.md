@@ -114,6 +114,24 @@ timing["adtqc_total"]   # mean timing quality over DETECTED events (None if none
 timing["after_rate"]    # fraction of detections at/after onset
 ```
 
+## Affected-source diagnosis (channel/subsystem-aware)
+
+"Did you flag the right channels?" — ESA-ADB's channel-aware F-beta, with
+subsystem scores when you provide the channel grouping:
+
+```python
+from telemeval.formats.esa_adb import read_channels
+
+chan = read_channels("Mission1/channels.csv")
+result = evaluate(
+    labels, predictions,
+    metrics=("event_wise", "channel_aware"),
+    metric_options={"channel_aware": {"subsystems_mapping": chan["subsystems_mapping"]}},
+)
+result.metrics["channel_aware"]["channel_fbeta"]
+result.metrics["channel_aware"]["subsystem_fbeta"]
+```
+
 ## Extending: the metric registry
 
 ```python

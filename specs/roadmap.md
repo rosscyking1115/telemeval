@@ -9,7 +9,7 @@ TimeEval readers + sklearn wrappers + registry.
 
 1. ~~**ADTQC**~~ — **shipped in v0.2** (global-timeline variant; registry
    extensibility proven). Channel-aware variant lands with subsystem work.
-2. **Subsystem-aware F0.5** — adds channel->subsystem mapping input.
+2. ~~**Subsystem-aware F0.5**~~ — **shipped in v0.3** (channel_aware metric + channels.csv reader).
 3. **Modified affiliation-based F0.5** (ESA-ADB variant).
 
 ## v1.x — adoption bridges (evidence-ranked)

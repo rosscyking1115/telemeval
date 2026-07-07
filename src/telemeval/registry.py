@@ -14,6 +14,7 @@ from typing import Any
 from telemeval.errors import SchemaError
 from telemeval.metrics.adtqc import score_adtqc
 from telemeval.metrics.affiliation import score_affiliation
+from telemeval.metrics.channel_aware import score_channel_aware
 from telemeval.metrics.event_wise import score_event_wise
 
 MetricFn = Callable[..., Mapping[str, Any]]
@@ -50,3 +51,7 @@ register_metric("affiliation", score_affiliation)
 # timing is only meaningful once detection quality is understood, so it is
 # explicit opt-in via evaluate(metrics=(..., "adtqc")).
 register_metric("adtqc", score_adtqc)
+# Affected-source diagnosis (ESA-ADB channel/subsystem-aware F-beta).
+# Opt-in: needs per-channel prediction semantics the caller must intend, and
+# subsystem scores need a channels->subsystems mapping via metric_options.
+register_metric("channel_aware", score_channel_aware)

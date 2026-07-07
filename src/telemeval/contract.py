@@ -306,8 +306,18 @@ def _validate_timestamp_alignment(
 def _parse_timestamps(values: pd.Series, column_name: str) -> pd.Series:
     try:
         parsed = pd.to_datetime(values, errors="raise", utc=True).dt.tz_convert(None)
-    except (ValueError, TypeError) as exc:
-        raise SchemaError(f"column {column_name} contains unparseable timestamps: {exc}") from exc
+    except (ValueError, TypeError):
+        # Real label files routinely mix formats ("2015-01-01" next to
+        # "2015-01-05 12:00"); fall back to per-element inference before
+        # rejecting.
+        try:
+            parsed = pd.to_datetime(values, errors="raise", utc=True, format="mixed").dt.tz_convert(
+                None
+            )
+        except (ValueError, TypeError) as exc:
+            raise SchemaError(
+                f"column {column_name} contains unparseable timestamps: {exc}"
+            ) from exc
     if parsed.isna().any():
         raise SchemaError(f"timestamp column {column_name} contains missing values")
     return parsed

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.0 — 2026-07-07
+
+- **New metric: channel-aware / subsystem-aware F-beta** (ESA-ADB affected-
+  source diagnosis), implemented from the reference `ChannelAwareFScore` and
+  verified against its four test cases ported verbatim (exact expected
+  values). Registered as `"channel_aware"`; subsystem mapping via
+  `metric_options` and the new `formats.esa_adb.read_channels` reader.
+- `evaluate()` gains `metric_options` for per-metric keyword options
+  (unknown names rejected).
+- Contract: timestamp parsing now falls back to per-element inference for
+  mixed-format label files (e.g. dates next to datetimes) before rejecting.
+- Real Mission1 readout (per-channel tau=5 baseline): channel F0.5 0.414,
+  subsystem F0.5 0.4154 — equal to the 27/65 detection rate, as expected
+  for a single-subsystem channel set.
+
+
 ## 0.2.0 — 2026-07-07
 
 - **New metric: ADTQC** (ESA-ADB's Anomaly Detection Timing Quality Curve) —
