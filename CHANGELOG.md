@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.2 — 2026-07-08
+
+- Metadata/housekeeping (no functional change): author set to Cheng-Yuan King
+  with contact email; added `SECURITY.md` (report to rosscyking@gmail.com);
+  CI now tests Python 3.11/3.12/3.13; simplified `CITATION.cff` to the concept
+  DOI only (version DOIs are minted per release on Zenodo); added provenance
+  notes to the private-data readouts in earlier entries.
+
+
 ## 0.3.1 — 2026-07-07
 
 - **Documentation correction (honesty patch).** An audit against ESA-ADB's
@@ -27,9 +36,11 @@
   (unknown names rejected).
 - Contract: timestamp parsing now falls back to per-element inference for
   mixed-format label files (e.g. dates next to datetimes) before rejecting.
-- Real Mission1 readout (per-channel tau=5 baseline): channel F0.5 0.414,
-  subsystem F0.5 0.4154 — equal to the 27/65 detection rate, as expected
-  for a single-subsystem channel set.
+- Real-data readout (measured on the ESA Anomaly Dataset Mission1 lightweight
+  subset, which is not redistributed here, so this is not reproducible from
+  this repo): per-channel tau=5 baseline scores channel F0.5 0.414, subsystem
+  F0.5 0.4154 — equal to the 27/65 detection rate, as expected for a
+  single-subsystem channel set.
 
 
 ## 0.2.0 — 2026-07-07
@@ -40,9 +51,11 @@
   Semantics verified against the reference source; latencies computed in
   seconds on the merged global timeline (deviation documented). Registered
   as `"adtqc"`; opt-in via `evaluate(metrics=(..., "adtqc"))`.
-  Validated on real ESA-ADB Mission1 telemetry: the robust-threshold
-  baseline scores ADTQC total 0.9618 over its 27 detections (median
-  latency 0 s) — conservative detectors fire rarely but at onset.
+  Validated on real ESA-ADB Mission1 telemetry (the ESA Anomaly Dataset is
+  not redistributed here, so this figure is not reproducible from this repo):
+  the robust-threshold baseline scores ADTQC total 0.9618 over its 27
+  detections (median latency 0 s) — conservative detectors fire rarely but
+  at onset.
 
 
 ## 0.1.2 — 2026-07-07

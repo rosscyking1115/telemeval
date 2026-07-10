@@ -1,12 +1,12 @@
 [project]
 name = "telemeval"
-version = "0.3.1"
+version = "0.3.2"
 description = "Leakage-safe, event-wise and affiliation-based evaluation for spacecraft-telemetry anomaly detection"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE", "src/telemeval/metrics/_affiliation_vendor/LICENSE"]
-authors = [{ name = "Ross King" }]
+authors = [{ name = "Cheng-Yuan King", email = "rosscyking1115@gmail.com" }]
 keywords = [
     "anomaly-detection",
     "time-series",

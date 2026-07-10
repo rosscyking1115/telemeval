@@ -4,20 +4,19 @@ title: "telemeval: leakage-safe, event-wise and affiliation-based evaluation for
 type: software
 authors:
   - family-names: King
-    given-names: Ross
+    given-names: Cheng-Yuan
+    email: rosscyking1115@gmail.com
 license: Apache-2.0
 repository-code: "https://github.com/rosscyking1115/telemeval"
-version: 0.3.1
+version: 0.3.2
 date-released: 2026-07-07
-# Concept DOI — always resolves to the latest version; cite this one.
+# Concept DOI — always resolves to the latest version; cite this one. Each
+# release also mints its own version DOI under this concept DOI on Zenodo.
 doi: 10.5281/zenodo.21250548
 identifiers:
   - type: doi
     value: 10.5281/zenodo.21250548
-    description: "Concept DOI (all versions)"
-  - type: doi
-    value: 10.5281/zenodo.21250549
-    description: "Version DOI (0.1.2)"
+    description: "Concept DOI (resolves to the latest archived version)"
 references:
   - type: conference-paper
     title: "Local Evaluation of Time Series Anomaly Detection Algorithms"
