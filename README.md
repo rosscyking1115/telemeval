@@ -9,6 +9,11 @@
 **Leakage-safe, event-wise and affiliation-based evaluation for
 spacecraft-telemetry anomaly detection.**
 
+Standalone library;
+[aerospace-prognostics](https://github.com/rosscyking1115/aerospace-prognostics)
+is its reference pipeline. Full project map →
+[profile](https://github.com/rosscyking1115).
+
 > Status: v0.x — early releases; the API may still change until v1.
 
 Time-series anomaly-detection evaluation is notoriously easy to get wrong:
