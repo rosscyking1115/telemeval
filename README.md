@@ -14,33 +14,33 @@ Standalone library;
 is its reference pipeline. Full project map →
 [profile](https://github.com/rosscyking1115).
 
-> Status: v0.x — early releases; the API may still change until v1.
+> Status: v0.x, early releases; the API may still change until v1.
 
 Time-series anomaly-detection evaluation is notoriously easy to get wrong:
 point-adjusted F1 can rank random predictions above real detectors, and subtle
 protocol bugs (like scoring training-window events against test-window
 predictions) silently inflate or deflate results. The metrics the literature
-recommends instead — corrected **event-wise** F-beta and **affiliation-based**
-precision/recall — have not had a maintained, permissively-licensed,
+recommends instead, corrected **event-wise** F-beta and **affiliation-based**
+precision/recall, have not had a maintained, permissively-licensed,
 pip-installable home.
 
 telemeval is that home:
 
 - **A validated ingestion contract** that raises typed, actionable errors
-  instead of producing a number from a leaky or malformed evaluation —
+  instead of producing a number from a leaky or malformed evaluation,
   including a first-class train/test-window leakage guard.
 - **Event-wise precision / recall / F-beta** with unambiguous, documented
   overlap semantics (recall matches ESA-ADB's event-wise recall exactly;
-  precision is telemeval's run-based definition — the differences from
+  precision is telemeval's run-based definition, and the differences from
   ESA-ADB's TNR-corrected `EW_*` are documented and pinned by divergence
-  tests, and an ESAScores-parity metric is on the roadmap).
-- **Affiliation-based precision / recall** — the canonical reference
+  tests, with an ESAScores-parity metric on the roadmap).
+- **Affiliation-based precision / recall**: the canonical reference
   implementation (Huet et al., KDD 2022, MIT) vendored, wrapped, tested, and
   maintained here.
-- **ADTQC detection-timing quality** (ESA-ADB) — scores *when* each event was
+- **ADTQC detection-timing quality** (ESA-ADB): scores *when* each event was
   first caught, not just whether; previously available only inside ESA-ADB's
   research fork.
-- **Channel- and subsystem-aware F-beta** (ESA-ADB) — did you flag the right
+- **Channel- and subsystem-aware F-beta** (ESA-ADB): did you flag the right
   *source*? Verified against the reference test suite's exact expected values.
 - **Honest reports**: deterministic JSON and Markdown output stamped with
   explicit scope caveats.
