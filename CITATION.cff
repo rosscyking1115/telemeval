@@ -8,8 +8,8 @@ authors:
     email: rosscyking1115@gmail.com
 license: Apache-2.0
 repository-code: "https://github.com/rosscyking1115/telemeval"
-version: 0.3.2
-date-released: 2026-07-07
+version: 0.3.3
+date-released: 2026-07-17
 # Concept DOI — always resolves to the latest version; cite this one. Each
 # release also mints its own version DOI under this concept DOI on Zenodo.
 doi: 10.5281/zenodo.21250548

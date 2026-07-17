@@ -29,7 +29,7 @@ from telemeval.metrics.event_wise import score_event_wise
 from telemeval.registry import available_metrics, get_metric, register_metric
 from telemeval.report import build_report, render_markdown, write_report
 
-__version__ = "0.3.2"
+__version__ = "0.3.3"
 
 __all__ = [
     "DEFAULT_METRICS",
