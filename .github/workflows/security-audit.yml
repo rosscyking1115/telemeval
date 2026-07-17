@@ -1,0 +1,27 @@
+name: Security audit
+
+# Dependabot opens a PR only when a fix exists. A CVE disclosed with no fixed
+# release leaves it silent, so this runs the audit on a schedule and surfaces a
+# disclosure as a failed scheduled run (which GitHub emails to the repo owner).
+# pip-audit is pulled in with --with rather than added as a dev dependency, to
+# keep the declared dependency surface unchanged.
+on:
+  schedule:
+    # Mondays, 08:00 UTC.
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --dev
+      - name: Dependency audit
+        run: uv run --with pip-audit pip-audit
