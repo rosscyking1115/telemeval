@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.3 — 2026-07-17
+
+- No functional change; the library code is identical to 0.3.2. This release
+  ships documentation and CI updates so the PyPI page reflects them.
+- Docs: README now links aerospace-prognostics as the reference pipeline and
+  the profile project map; README and roadmap prose edited for plainness.
+- CI: Dependabot moved to the `uv` ecosystem; added a weekly scheduled
+  `pip-audit` (a disclosure with no fixed release surfaces as a failed
+  scheduled run rather than a blocked PR); bumped `actions/checkout` and
+  `astral-sh/setup-uv`.
+- Added `.env` to `.gitignore`.
+
 ## 0.3.2 — 2026-07-08
 
 - Metadata/housekeeping (no functional change): author set to Cheng-Yuan King
