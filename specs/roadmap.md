@@ -1,24 +1,24 @@
-# telemeval — Roadmap
+# telemeval roadmap
 
 ## v1 (current target)
 
 See v1-scope.md. Contract + event-wise + affiliation + reports + ESA-ADB &
 TimeEval readers + sklearn wrappers + registry.
 
-## v1.x — metric hierarchy (evidence-ranked)
+## v1.x metric hierarchy (evidence-ranked)
 
-1. ~~**ADTQC**~~ — **shipped in v0.2** (global-timeline variant; registry
+1. ~~**ADTQC**~~: **shipped in v0.2** (global-timeline variant; registry
    extensibility proven). Channel-aware variant lands with subsystem work.
-2. ~~**Subsystem-aware F0.5**~~ — **shipped in v0.3** (channel_aware metric + channels.csv reader).
+2. ~~**Subsystem-aware F0.5**~~: **shipped in v0.3** (channel_aware metric + channels.csv reader).
 3. **v0.4.0 parity milestone (next)**: an ESAScores-parity metric
-   ("esa_scores") — EW with TNR duration correction, alarming_precision,
-   select_labels semantics, interval-union events, full_range — verified
-   against ESA-ADB's exact fixture outputs; plus ESA's modified-affiliation
-   wrapper (per-ID averaging + label-aware zone filtering over the same
-   vendored core). Justified by the "reproduce ESA-ADB without Docker"
-   adoption bridge (2026-07-07 checkpoint).
+   ("esa_scores") covering EW with TNR duration correction,
+   alarming_precision, select_labels semantics, interval-union events, and
+   full_range, verified against ESA-ADB's exact fixture outputs; plus ESA's
+   modified-affiliation wrapper (per-ID averaging + label-aware zone filtering
+   over the same vendored core). Justified by the "reproduce ESA-ADB without
+   Docker" adoption bridge (2026-07-07 checkpoint).
 
-## v1.x — adoption bridges (evidence-ranked)
+## v1.x adoption bridges (evidence-ranked)
 
 1. xarray input adapter (optional dependency).
 2. Yamcs parameter-CSV ingestion (real operator export format; ISS/VIPER
